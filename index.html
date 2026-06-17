@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>101 Fast Food — Main Bazaar</title>
+<meta name="description" content="101 Fast Food, Main Bazaar. Pizza, burgers, shawarma, paratha rolls, kids deals and daily specials. Order on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17120d;
+    --ink-soft:#241b14;
+    --paper:#f3e9d6;
+    --paper-soft:#e8dabb;
+    --crimson:#c81f2c;
+    --crimson-dark:#931620;
+    --amber:#ef9f0c;
+    --smoke:#8a7a64;
+    --line: rgba(23,18,13,.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.01em;margin:0;}
+  .mono{font-family:'Space Mono',monospace;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 1.5rem;}
+
+  /* ---------- NAV ---------- */
+  .topnav{
+    position:sticky;top:0;z-index:50;
+    background:var(--ink);
+    border-bottom:1px solid rgba(243,233,214,.12);
+  }
+  .topnav-inner{
+    max-width:1180px;margin:0 auto;padding:.7rem 1.25rem;
+    display:flex;align-items:center;gap:1.25rem;
+  }
+  .brandmark{
+    display:flex;align-items:center;gap:.5rem;flex:0 0 auto;color:var(--paper);
+  }
+  .brandmark .num{
+    font-family:'Anton',sans-serif;font-size:1.6rem;color:var(--amber);line-height:1;
+  }
+  .brandmark .tag{
+    font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;color:var(--smoke);
+  }
+  .navlinks{
+    display:flex;gap:1.4rem;overflow-x:auto;flex:1 1 auto;
+    scrollbar-width:none;
+  }
+  .navlinks::-webkit-scrollbar{display:none;}
+  .navlinks a{
+    font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;
+    color:rgba(243,233,214,.7);white-space:nowrap;padding:.3rem 0;
+    border-bottom:2px solid transparent;
+  }
+  .navlinks a:hover{color:var(--paper);border-color:var(--amber);}
+  .nav-cta{
+    flex:0 0 auto;background:var(--crimson);color:var(--paper);
+    font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;
+    padding:.55rem .9rem;border-radius:3px;letter-spacing:.04em;
+    display:flex;align-items:center;gap:.4rem;white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--crimson-dark);}
+  .nav-cta svg{width:14px;height:14px;flex:0 0 auto;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);color:var(--paper);
+    padding:4rem 1.5rem 5rem;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(243,233,214,.05) 1px, transparent 1px);
+    background-size:14px 14px;pointer-events:none;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;position:relative;}
+  .ticket{
+    background:var(--paper);color:var(--ink);
+    border-radius:6px;position:relative;
+    max-width:640px;
+    padding:2.4rem 2.4rem 2rem;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.5);
+  }
+  .ticket::before,.ticket::after{
+    content:"";position:absolute;top:50%;transform:translateY(-50%);
+    width:28px;height:28px;border-radius:50%;background:var(--ink);
+  }
+  .ticket::before{left:-14px;}
+  .ticket::after{right:-14px;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.18em;
+    color:var(--crimson-dark);margin-bottom:.6rem;display:block;
+  }
+  .ticket .num{
+    font-family:'Anton',sans-serif;font-size:clamp(4.5rem,12vw,7.5rem);
+    line-height:.85;color:var(--ink);
+  }
+  .ticket .sub{
+    font-family:'Anton',sans-serif;font-size:1.4rem;letter-spacing:.05em;
+    color:var(--crimson);margin-top:.2rem;
+  }
+  .ticket p.tagline{
+    font-size:1rem;color:var(--ink-soft);max-width:34ch;margin:1rem 0 1.5rem;line-height:1.5;
+  }
+  .perf{
+    border-top:2px dashed var(--smoke);opacity:.5;margin:1.4rem 0;
+  }
+  .ticket-fields{
+    display:flex;flex-wrap:wrap;gap:1.2rem 2rem;margin-bottom:1.6rem;
+  }
+  .ticket-fields div{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--smoke);}
+  .ticket-fields strong{display:block;font-family:'Work Sans',sans-serif;font-size:.92rem;color:var(--ink);font-weight:600;margin-top:.15rem;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:.8rem;}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    padding:.85rem 1.4rem;border-radius:4px;font-weight:700;font-size:.92rem;
+    font-family:'Work Sans',sans-serif;
+  }
+  .btn svg{width:18px;height:18px;}
+  .btn-primary{background:var(--crimson);color:var(--paper);}
+  .btn-primary:hover{background:var(--crimson-dark);}
+  .btn-ghost{background:transparent;border:2px solid var(--ink);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+  .hero-loc{
+    margin-top:2rem;display:flex;align-items:center;gap:.5rem;
+    font-family:'Space Mono',monospace;font-size:.82rem;color:rgba(243,233,214,.75);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  .section{padding:4.5rem 1.5rem;border-bottom:1px solid var(--line);}
+  .section-head{display:flex;align-items:baseline;gap:.9rem;margin-bottom:2.4rem;flex-wrap:wrap;}
+  .section-code{
+    font-family:'Space Mono',monospace;font-size:.75rem;color:var(--crimson-dark);
+    background:rgba(200,31,44,.08);padding:.3rem .6rem;border-radius:3px;letter-spacing:.05em;
+  }
+  .section-head h2{font-size:clamp(2rem,4.5vw,3rem);}
+  .section-note{font-family:'Space Mono',monospace;font-size:.78rem;color:var(--smoke);margin-top:.4rem;width:100%;}
+
+  /* deal / ticket cards grid */
+  .deal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.6rem;}
+  .deal-card{
+    background:var(--paper-soft);border-radius:6px;padding:1.6rem 1.5rem 1.4rem;position:relative;
+  }
+  .deal-card::before,.deal-card::after{
+    content:"";position:absolute;top:0;left:1.6rem;right:1.6rem;
+    border-top:2px dashed rgba(23,18,13,.18);
+  }
+  .deal-card::before{top:auto;bottom:3.6rem;}
+  .deal-card::after{display:none;}
+  .deal-day{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--crimson-dark);}
+  .deal-name{font-family:'Anton',sans-serif;font-size:1.5rem;margin:.2rem 0 .9rem;}
+  .deal-items{list-style:none;margin:0 0 1.1rem;padding:0;}
+  .deal-items li{
+    font-size:.88rem;color:var(--ink-soft);padding:.18rem 0;display:flex;gap:.5rem;
+  }
+  .deal-items li::before{content:"—";color:var(--smoke);}
+  .deal-price{
+    font-family:'Anton',sans-serif;font-size:1.7rem;color:var(--crimson);padding-top:1rem;
+  }
+  .deal-price span{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--smoke);font-weight:400;margin-right:.3rem;}
+
+  /* menu item rows */
+  .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2.4rem 3rem;}
+  .menu-group h3{font-size:1.05rem;font-family:'Work Sans',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--crimson-dark);margin-bottom:.6rem;border-bottom:2px solid var(--ink);padding-bottom:.4rem;}
+  .item-row{display:flex;align-items:baseline;padding:.5rem 0;gap:.5rem;}
+  .item-row .name{font-weight:600;font-size:.95rem;white-space:nowrap;}
+  .item-row .leader{flex:1;border-bottom:2px dotted var(--smoke);opacity:.55;margin-bottom:.3rem;}
+  .item-row .price{font-family:'Space Mono',monospace;font-weight:700;color:var(--crimson-dark);font-size:.92rem;white-space:nowrap;}
+  .item-row .price small{color:var(--smoke);font-weight:400;font-size:.7rem;}
+
+  /* pizza flavor tiles + size table */
+  .pizza-block{background:var(--paper-soft);border-radius:6px;padding:1.8rem 1.8rem 1.6rem;margin-bottom:1.8rem;}
+  .pizza-block h3{font-family:'Anton',sans-serif;font-size:1.3rem;color:var(--ink);margin-bottom:.2rem;}
+  .pizza-block .desc{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--smoke);margin-bottom:1.1rem;}
+  .flavor-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.3rem;}
+  .flavor-chip{
+    background:var(--paper);border:1px solid var(--line);border-radius:3px;
+    padding:.4rem .75rem;font-size:.82rem;font-weight:500;
+  }
+  .size-table{display:flex;gap:.8rem;flex-wrap:wrap;}
+  .size-cell{
+    background:var(--ink);color:var(--paper);border-radius:4px;
+    padding:.6rem 1.1rem;text-align:center;min-width:84px;
+  }
+  .size-cell .s{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--amber);display:block;margin-bottom:.15rem;}
+  .size-cell .p{font-family:'Anton',sans-serif;font-size:1.25rem;}
+
+  /* two-col S/L price rows for pasta etc */
+  .sl-row{display:flex;align-items:baseline;gap:.6rem;padding:.5rem 0;}
+  .sl-row .name{font-weight:600;font-size:.95rem;flex:0 0 auto;white-space:nowrap;}
+  .sl-row .leader{flex:1;border-bottom:2px dotted var(--smoke);opacity:.55;margin-bottom:.3rem;}
+  .sl-prices{display:flex;gap:.5rem;flex:0 0 auto;}
+  .sl-prices span{font-family:'Space Mono',monospace;font-size:.78rem;background:rgba(23,18,13,.06);padding:.2rem .5rem;border-radius:3px;}
+  .sl-prices b{color:var(--crimson-dark);}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* footer / find us */
+  .footer{background:var(--ink);color:var(--paper);padding:4.5rem 1.5rem 2.5rem;}
+  .footer-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;}
+  .footer h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:1.2rem;}
+  .contact-card{background:var(--ink-soft);border-radius:6px;padding:1.8rem;}
+  .contact-row{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:1.3rem;}
+  .contact-row svg{width:20px;height:20px;flex:0 0 auto;color:var(--amber);margin-top:.15rem;}
+  .contact-row .label{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--smoke);display:block;}
+  .contact-row .value{font-size:1rem;font-weight:600;}
+  .map-frame{border-radius:6px;overflow:hidden;border:1px solid rgba(243,233,214,.15);height:320px;}
+  .map-frame iframe{width:100%;height:100%;border:0;filter:grayscale(.15) contrast(1.05);}
+  .foot-bottom{
+    max-width:1180px;margin:3rem auto 0;padding-top:1.6rem;border-top:1px solid rgba(243,233,214,.12);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+    font-family:'Space Mono',monospace;font-size:.72rem;color:var(--smoke);
+  }
+
+  .float-wa{
+    position:fixed;bottom:1.4rem;right:1.4rem;z-index:60;
+    background:var(--crimson);color:var(--paper);
+    width:56px;height:56px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 25px -8px rgba(0,0,0,.5);
+  }
+  .float-wa svg{width:26px;height:26px;}
+  .float-wa:hover{background:var(--crimson-dark);}
+
+  @media(max-width:760px){
+    .footer-grid{grid-template-columns:1fr;}
+    .nav-cta span{display:none;}
+    .ticket{padding:1.9rem 1.6rem 1.6rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="topnav">
+  <div class="topnav-inner">
+    <div class="brandmark">
+      <span class="num">101</span>
+      <span class="tag">FAST&nbsp;FOOD</span>
+    </div>
+    <nav class="navlinks">
+      <a href="#specials">Specials</a>
+      <a href="#pizza">Pizza</a>
+      <a href="#burgers">Burgers</a>
+      <a href="#chicken">Chicken Corner</a>
+      <a href="#wraps">Wraps &amp; Shawarma</a>
+      <a href="#pasta">Pasta &amp; Sides</a>
+      <a href="#sandwich">Sandwiches</a>
+      <a href="#kids">Kids</a>
+      <a href="#find-us">Find Us</a>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/923025432609?text=Hi%20101%2C%20I%27d%20like%20to%20place%20an%20order!" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+      <span>Order on WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="ticket reveal in">
+      <span class="eyebrow">TAKEAWAY TICKET</span>
+      <div class="num">101</div>
+      <div class="sub">FAST FOOD</div>
+      <p class="tagline">Burgers off the grill, pizza out of the oven, paratha rolls fresh off the tawa — your order out the window, fast.</p>
+      <div class="perf"></div>
+      <div class="ticket-fields">
+        <div>ITEM<strong>Whatever you're craving</strong></div>
+        <div>SERVED<strong>Hot, every time</strong></div>
+        <div>STATUS<strong>Ready for pickup</strong></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/923025432609?text=Hi%20101%2C%20I%27d%20like%20to%20place%20an%20order!" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+          Order on WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#specials">See the menu</a>
+      </div>
+    </div>
+    <div class="hero-loc">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Main Bazaar — order ahead on WhatsApp, 03025432609
+    </div>
+  </div>
+</section>
+
+<!-- ============ DAILY SPECIALS ============ -->
+<section class="section" id="specials">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">SP-101</span>
+      <h2>Daily Specials</h2>
+      <span class="section-note">A different deal stamped for every day of the week.</span>
+    </div>
+    <div class="deal-grid">
+
+      <div class="deal-card reveal">
+        <span class="deal-day">MONDAY</span>
+        <h3 class="deal-name">Monday Deal</h3>
+        <ul class="deal-items">
+          <li>1 Regular Pizza (L)</li>
+          <li>2 Zinger Burgers</li>
+          <li>1.5 Ltr Cold Drink</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>1890</div>
+      </div>
+
+      <div class="deal-card reveal">
+        <span class="deal-day">TUESDAY</span>
+        <h3 class="deal-name">Tuesday Deal</h3>
+        <ul class="deal-items">
+          <li>1 Regular Pizza (M)</li>
+          <li>2 Zinger Burgers</li>
+          <li>2 Zinger Shawarmas</li>
+          <li>1.5 Ltr Cold Drink</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>2050</div>
+      </div>
+
+      <div class="deal-card reveal">
+        <span class="deal-day">WEDNESDAY</span>
+        <h3 class="deal-name">Wednesday Deal</h3>
+        <ul class="deal-items">
+          <li>2 Regular Pizza (S)</li>
+          <li>2 Zinger Burgers</li>
+          <li>10 Hot Wings</li>
+          <li>1.5 Ltr Cold Drink</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>2190</div>
+      </div>
+
+      <div class="deal-card reveal">
+        <span class="deal-day">THURSDAY</span>
+        <h3 class="deal-name">Thursday Deal</h3>
+        <ul class="deal-items">
+          <li>4 Zinger Shawarmas</li>
+          <li>4 Zinger Burgers</li>
+          <li>2 Regular Fries</li>
+          <li>1.5 Ltr Cold Drink</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>2790</div>
+      </div>
+
+      <div class="deal-card reveal">
+        <span class="deal-day">FRIDAY</span>
+        <h3 class="deal-name">Friday Deal</h3>
+        <ul class="deal-items">
+          <li>1 Regular Pizza (S)</li>
+          <li>1 Regular Pizza (M)</li>
+          <li>2 Zinger Burgers</li>
+          <li>6 Hot Wings</li>
+          <li>1.5 Ltr Cold Drink</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>2290</div>
+      </div>
+
+      <div class="deal-card reveal">
+        <span class="deal-day">SATURDAY</span>
+        <h3 class="deal-name">Saturday Deal</h3>
+        <ul class="deal-items">
+          <li>2 Regular Pizza (L)</li>
+          <li>10 Hot Wings</li>
+          <li>1.5 Ltr Cold Drink</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>2990</div>
+      </div>
+
+      <div class="deal-card reveal">
+        <span class="deal-day">SUNDAY</span>
+        <h3 class="deal-name">Sunday Deal</h3>
+        <ul class="deal-items">
+          <li>1 Regular Pizza (L)</li>
+          <li>1 Regular Pizza (M)</li>
+          <li>1.5 Ltr Cold Drink</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>2050</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIZZA ============ -->
+<section class="section" id="pizza">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">PZ-101</span>
+      <h2>Pizza</h2>
+    </div>
+
+    <div class="pizza-block reveal">
+      <h3>Classic Selection</h3>
+      <p class="desc">Small · Medium · Large</p>
+      <div class="flavor-list">
+        <span class="flavor-chip">Chicken Tikka</span>
+        <span class="flavor-chip">Chicken Fajita</span>
+        <span class="flavor-chip">Chicken Cheese</span>
+        <span class="flavor-chip">Cheese Lover</span>
+        <span class="flavor-chip">Vegetarian</span>
+        <span class="flavor-chip">Hot &amp; Spicy</span>
+        <span class="flavor-chip">Chicken Achari</span>
+        <span class="flavor-chip">B.B.Q Smoked</span>
+      </div>
+      <div class="size-table">
+        <div class="size-cell"><span class="s">SMALL</span><span class="p">520</span></div>
+        <div class="size-cell"><span class="s">MEDIUM</span><span class="p">830</span></div>
+        <div class="size-cell"><span class="s">LARGE</span><span class="p">1250</span></div>
+      </div>
+    </div>
+
+    <div class="pizza-block reveal">
+      <h3>Specialty Selection</h3>
+      <p class="desc">Small · Medium · Large</p>
+      <div class="flavor-list">
+        <span class="flavor-chip">Super Supreme</span>
+        <span class="flavor-chip">Malai Boti</span>
+        <span class="flavor-chip">Grill Special</span>
+        <span class="flavor-chip">Chicken Euro</span>
+        <span class="flavor-chip">Hot Mexican</span>
+        <span class="flavor-chip">Lazania</span>
+        <span class="flavor-chip">Kababish</span>
+        <span class="flavor-chip">Super Atiliya</span>
+        <span class="flavor-chip">Thin Crust</span>
+      </div>
+      <div class="size-table">
+        <div class="size-cell"><span class="s">SMALL</span><span class="p">570</span></div>
+        <div class="size-cell"><span class="s">MEDIUM</span><span class="p">930</span></div>
+        <div class="size-cell"><span class="s">LARGE</span><span class="p">1350</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ BURGERS ============ -->
+<section class="section" id="burgers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">BG-101</span>
+      <h2>Burgers</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-group reveal">
+        <h3>Signature</h3>
+        <div class="item-row"><span class="name">Chicken Supreme</span><span class="leader"></span><span class="price">Rs. 360</span></div>
+        <div class="item-row"><span class="name">Grill Burger</span><span class="leader"></span><span class="price">Rs. 470</span></div>
+        <div class="item-row"><span class="name">Mighty Burger</span><span class="leader"></span><span class="price">Rs. 470</span></div>
+        <div class="item-row"><span class="name">Zinger Lava</span><span class="leader"></span><span class="price">Rs. 500</span></div>
+        <div class="item-row"><span class="name">Beef Burger</span><span class="leader"></span><span class="price">Rs. 480</span></div>
+        <div class="item-row"><span class="name">Fish Burger</span><span class="leader"></span><span class="price">Rs. 670</span></div>
+      </div>
+      <div class="menu-group reveal">
+        <h3>Classics</h3>
+        <div class="item-row"><span class="name">Chicken Spicy</span><span class="leader"></span><span class="price">Rs. 280</span></div>
+        <div class="item-row"><span class="name">Patty Jumbo</span><span class="leader"></span><span class="price">Rs. 310</span></div>
+        <div class="item-row"><span class="name">Zinger Burger</span><span class="leader"></span><span class="price">Rs. 320</span></div>
+        <div class="item-row"><span class="name">Zinger Mushroom</span><span class="leader"></span><span class="price">Rs. 370</span></div>
+        <div class="item-row"><span class="name">Zinger Jalapeno</span><span class="leader"></span><span class="price">Rs. 370</span></div>
+        <div class="item-row"><span class="name">Zinger Fajita</span><span class="leader"></span><span class="price">Rs. 370</span></div>
+        <div class="item-row"><span class="name">Pizza Burger</span><span class="leader"></span><span class="price">Rs. 500</span></div>
+        <div class="item-row"><span class="name">Charcoal Grill</span><span class="leader"></span><span class="price">Rs. 520</span></div>
+        <div class="item-row"><span class="name">Double Maza</span><span class="leader"></span><span class="price">Rs. 520</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHICKEN CORNER ============ -->
+<section class="section" id="chicken">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">CC-101</span>
+      <h2>Chicken Corner</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-group reveal">
+        <h3>Wings &amp; Fries</h3>
+        <div class="item-row"><span class="name">Hot Wings</span><span class="leader"></span><span class="price">Rs. 60</span></div>
+        <div class="item-row"><span class="name">Masala Wings</span><span class="leader"></span><span class="price">Rs. 60</span></div>
+        <div class="item-row"><span class="name">B.B.Q Wings</span><span class="leader"></span><span class="price">Rs. 70</span></div>
+        <div class="item-row"><span class="name">Chicken Fries</span><span class="leader"></span><span class="price">Rs. 200</span></div>
+      </div>
+      <div class="menu-group reveal">
+        <h3>Bites</h3>
+        <div class="item-row"><span class="name">Cheese Nuggets</span><span class="leader"></span><span class="price">Rs. 50 <small>/pc</small></span></div>
+        <div class="item-row"><span class="name">Chicken Donuts</span><span class="leader"></span><span class="price">Rs. 80 <small>/pc</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WRAPS & SHAWARMA ============ -->
+<section class="section" id="wraps">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">WR-101</span>
+      <h2>Wraps &amp; Shawarma</h2>
+      <span class="section-note">Paratha rolls and shawarmas, rolled to order.</span>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-group reveal">
+        <h3>Paratha Rolls</h3>
+        <div class="item-row"><span class="name">Chicken</span><span class="leader"></span><span class="price">Rs. 340</span></div>
+        <div class="item-row"><span class="name">Zinger</span><span class="leader"></span><span class="price">Rs. 360</span></div>
+        <div class="item-row"><span class="name">Malai</span><span class="leader"></span><span class="price">Rs. 380</span></div>
+        <div class="item-row"><span class="name">Grill</span><span class="leader"></span><span class="price">Rs. 450</span></div>
+        <div class="item-row"><span class="name">Pizza</span><span class="leader"></span><span class="price">Rs. 500</span></div>
+        <div class="item-row"><span class="name">Tortilla</span><span class="leader"></span><span class="price">Rs. 510</span></div>
+        <div class="item-row"><span class="name">4S Special</span><span class="leader"></span><span class="price">Rs. 570</span></div>
+        <div class="item-row"><span class="name">Steak Chk.</span><span class="leader"></span><span class="price">Rs. 500</span></div>
+        <div class="item-row"><span class="name">Kababish</span><span class="leader"></span><span class="price">Rs. 350</span></div>
+      </div>
+      <div class="menu-group reveal">
+        <h3>Shawarma</h3>
+        <div class="item-row"><span class="name">Chicken</span><span class="leader"></span><span class="price">Rs. 260</span></div>
+        <div class="item-row"><span class="name">Turkish</span><span class="leader"></span><span class="price">Rs. 290</span></div>
+        <div class="item-row"><span class="name">Zinger</span><span class="leader"></span><span class="price">Rs. 300</span></div>
+        <div class="item-row"><span class="name">2 in 1</span><span class="leader"></span><span class="price">Rs. 320</span></div>
+        <div class="item-row"><span class="name">Grilled</span><span class="leader"></span><span class="price">Rs. 370</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASTA & SIDES ============ -->
+<section class="section" id="pasta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">PS-101</span>
+      <h2>Pasta &amp; Sides</h2>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-group reveal">
+        <h3>Pasta <span class="mono" style="font-size:.65rem;color:var(--smoke);text-transform:none;font-weight:400;">(Small / Large)</span></h3>
+        <div class="sl-row"><span class="name">Hot Cheese</span><span class="leader"></span><span class="sl-prices"><span><b>S</b> 420</span><span><b>L</b> 620</span></span></div>
+        <div class="sl-row"><span class="name">4S Special</span><span class="leader"></span><span class="sl-prices"><span><b>S</b> 450</span><span><b>L</b> 650</span></span></div>
+        <div class="sl-row"><span class="name">Grill Chicken</span><span class="leader"></span><span class="sl-prices"><span><b>S</b> 480</span><span><b>L</b> 680</span></span></div>
+        <div class="sl-row"><span class="name">Mexican</span><span class="leader"></span><span class="sl-prices"><span><b>S</b> 430</span><span><b>L</b> 630</span></span></div>
+        <div class="sl-row"><span class="name">Mexican Pasta</span><span class="leader"></span><span class="sl-prices"><span><b>S</b> 430</span><span><b>L</b> 630</span></span></div>
+        <div class="sl-row"><span class="name">Pizza Fries</span><span class="leader"></span><span class="sl-prices"><span><b>S</b> 420</span><span><b>L</b> 620</span></span></div>
+      </div>
+      <div class="menu-group reveal">
+        <h3>More Sides</h3>
+        <div class="item-row"><span class="name">Spin Roll <span class="mono" style="font-size:.65rem;color:var(--crimson);">NEW</span></span><span class="leader"></span><span class="price">Rs. 490</span></div>
+        <div class="item-row"><span class="name">Loaded Steaks (Regular)</span><span class="leader"></span><span class="price">Rs. 520</span></div>
+        <div class="item-row"><span class="name">Loaded Steaks (Jumbo)</span><span class="leader"></span><span class="price">Rs. 670</span></div>
+        <div class="item-row"><span class="name">Garlic Bread</span><span class="leader"></span><span class="price">Rs. 490</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SANDWICHES ============ -->
+<section class="section" id="sandwich">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">SW-101</span>
+      <h2>Sandwiches</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-group reveal">
+        <h3>Sandwich</h3>
+        <div class="item-row"><span class="name">Chicken</span><span class="leader"></span><span class="price">Rs. 400</span></div>
+        <div class="item-row"><span class="name">Tikka</span><span class="leader"></span><span class="price">Rs. 420</span></div>
+        <div class="item-row"><span class="name">Club</span><span class="leader"></span><span class="price">Rs. 440</span></div>
+        <div class="item-row"><span class="name">4S Chef</span><span class="leader"></span><span class="price">Rs. 670</span></div>
+        <div class="item-row"><span class="name">Grilled</span><span class="leader"></span><span class="price">Rs. 500</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KIDS SPECIAL ============ -->
+<section class="section" id="kids">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-code">KD-101</span>
+      <h2>Kids Special</h2>
+    </div>
+    <div class="deal-grid">
+      <div class="deal-card reveal">
+        <span class="deal-day">KIDS DEAL 01</span>
+        <h3 class="deal-name">Nugget Combo</h3>
+        <ul class="deal-items">
+          <li>6 Chicken Nuggets</li>
+          <li>1 Fries (S)</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>420</div>
+      </div>
+      <div class="deal-card reveal">
+        <span class="deal-day">KIDS DEAL 02</span>
+        <h3 class="deal-name">Wings Combo</h3>
+        <ul class="deal-items">
+          <li>6 Chicken Hot Wings</li>
+          <li>1 Fries (S)</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>480</div>
+      </div>
+      <div class="deal-card reveal">
+        <span class="deal-day">KIDS DEAL 03</span>
+        <h3 class="deal-name">Mix Combo</h3>
+        <ul class="deal-items">
+          <li>5 Chicken Nuggets</li>
+          <li>5 Hot Wings</li>
+          <li>1 Fries (S)</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>690</div>
+      </div>
+      <div class="deal-card reveal">
+        <span class="deal-day">KIDS DEAL 04</span>
+        <h3 class="deal-name">Party Combo</h3>
+        <ul class="deal-items">
+          <li>10 Hot Wings</li>
+          <li>10 Masala Wings</li>
+          <li>10 Nuggets</li>
+          <li>1 Fries (F)</li>
+        </ul>
+        <div class="deal-price"><span>Rs.</span>1800</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIND US / FOOTER ============ -->
+<footer class="footer" id="find-us">
+  <div class="wrap footer-grid">
+    <div>
+      <span class="section-code">LOC-101</span>
+      <h2 style="margin-top:.8rem;">Find Us</h2>
+      <p style="color:rgba(243,233,214,.7);max-width:38ch;line-height:1.6;margin-bottom:1.6rem;">
+        Walk in, call ahead, or send your order straight to WhatsApp — we'll have it ready for pickup.
+      </p>
+      <div class="contact-card">
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <span class="label">ADDRESS</span>
+            <span class="value">101 Fast Food, Main Bazaar</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+          <div>
+            <span class="label">WHATSAPP ORDERS</span>
+            <a class="value" href="https://wa.me/923025432609" target="_blank" rel="noopener" style="color:var(--amber);">0302 5432609</a>
+          </div>
+        </div>
+        <div class="contact-row" style="margin-bottom:0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div>
+            <span class="label">HOURS</span>
+            <span class="value">Open daily — see WhatsApp for today's hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-frame reveal">
+      <iframe src="https://www.google.com/maps?q=Main+Bazaar&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Main Bazaar map"></iframe>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>101 FAST FOOD — MAIN BAZAAR</span>
+    <span>ORDER NO. 101 · ALWAYS FRESH</span>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/923025432609?text=Hi%20101%2C%20I%27d%20like%20to%20place%20an%20order!" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
+</a>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
